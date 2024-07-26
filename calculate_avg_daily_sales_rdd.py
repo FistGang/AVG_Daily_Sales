@@ -17,6 +17,19 @@ average_sale_rdd = (
     .mapValues(lambda amounts: round(sum(amounts) / len(amounts), 2))
 )
 
+# average_sale_rdd = (
+#     rdd.map(lambda row: (row["store_id"], (row["sales_amount"], 1)))
+#     .reduceByKey(
+#         lambda accumulated, current: (
+#             accumulated[0] + current[0],
+#             accumulated[1] + current[1],
+#         )
+#     )
+#     .mapValues(
+#         lambda total_and_count: round(total_and_count[0] / total_and_count[1], 2)
+#     )
+# )
+
 average_sale_df = average_sale_rdd.toDF(["store_id", "average_daily_sales"]).orderBy(
     "store_id"
 )
