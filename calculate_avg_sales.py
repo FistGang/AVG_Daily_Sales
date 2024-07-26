@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import avg, round
 
 spark = (
-    SparkSession.builder.master("local")
+    SparkSession.builder.master("local[*]")
     .appName("Calculate Average Daily Sales")
     .getOrCreate()
 )
